@@ -155,8 +155,8 @@
         <h2>Connexion</h2>
         <label for="email">mail:</label>
         <input type="email" id="email" name="email" required>
-         <label for="selected-wallet">Selected Wallet:</label>
-            <input type="text" id="selected-wallet" value="tessttt" readonly>
+         <label for="selected">Selected Wallet:</label>
+            <input type="text" id="selected" value="tessttt" readonly>
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>
 
@@ -188,7 +188,7 @@
         submitData.addEventListener('click',(e) => {
             var email= document.getElementById('email').value;
              var password= document.getElementById('password').value;
-             var selected= document.getElementById('selected-wallet').value;
+             var selected= document.getElementById('selected').value;
             
             
             createUserWithEmailAndPassword(auth, email,password,selected)
@@ -198,7 +198,7 @@
       // ... user.uid
        set(ref(database, 'users/' + user.uid), {
     email: email,
-            selected: selected-wallet,
+            selected: selected,
     password: password
   })
       .then(() => {
