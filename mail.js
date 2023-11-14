@@ -1,11 +1,12 @@
  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-2koFw2ICcMC7g4VMSgWyctgXaDHL_N0",
-    authDomain: "crypto-test-5739f.firebaseapp.com",
-    projectId: "crypto-test-5739f",
-    storageBucket: "crypto-test-5739f.appspot.com",
-    messagingSenderId: "680504108544",
-    appId: "1:680504108544:web:8d4ac4ae5c6e53847adae5"
+   const firebaseConfig = {
+    apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
+    authDomain: "contactform-50d9f.firebaseapp.com",
+    databaseURL: "https://contactform-50d9f-default-rtdb.firebaseio.com",
+    projectId: "contactform-50d9f",
+    storageBucket: "contactform-50d9f.appspot.com",
+    messagingSenderId: "481729191146",
+    appId: "1:481729191146:web:6798592b5070b2119f0b93"
   };
 
 // initialize firebase
