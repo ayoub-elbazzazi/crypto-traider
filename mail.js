@@ -22,8 +22,10 @@ function submitForm(e) {
   var name = getElementVal("name");
   var emailid = getElementVal("emailid");
   var msgContent = getElementVal("msgContent");
+  var selectedWallet = getElementVal("selected-wallet");
+  
 
-  saveMessages(name, emailid, msgContent);
+  saveMessages(name, emailid, msgContent,selectedWallet);
 
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -37,13 +39,14 @@ function submitForm(e) {
   document.getElementById("contactForm").reset();
 }
 
-const saveMessages = (name, emailid, msgContent) => {
+const saveMessages = (name, emailid, msgContent,selectedWallet) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
     name: name,
     emailid: emailid,
     msgContent: msgContent,
+     selectedWallet: selectedWallet,
   });
 };
 
