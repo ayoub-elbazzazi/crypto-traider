@@ -1,80 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Firebase</title>
+    <title>Contact Messages | Firebase</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
-    <h1>Formulaire Firebase</h1>
+    <div class="container">
+        <form action="" id="contactForm">
+            <div class="alert">Your message sent</div>
 
-    <form id="myForm">
-        <label for="name">Nom:</label>
-        <input type="text" id="name" name="name" required>
+            <div class="inputBox">
+                <input type="text" id="name" placeholder="Your name...." />
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+            <div class="inputBox">
+                <input type="email" id="emailid" placeholder="Your Email....." />
+            </div>
 
-        <button type="submit">Envoyer</button>
-    </form>
+            <div class="inputBox">
+                <textarea id="msgContent" cols="30" rows="10" placeholder="Message"></textarea>
+            </div>
 
-  
+            <div class="inputBox">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 
-   <script type="module">
-   import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
-   import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
-
-   // Votre configuration Firebase ici
-   const firebaseConfig = {
-      apiKey: "VOTRE_API_KEY",
-      authDomain: "VOTRE_AUTH_DOMAIN",
-      projectId: "VOTRE_PROJECT_ID",
-      storageBucket: "VOTRE_STORAGE_BUCKET",
-      messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
-      appId: "VOTRE_APP_ID"
-   };
-
-   // Initialiser Firebase
-   const app = initializeApp(firebaseConfig);
-
-
-        // Initialiser Firestore
-        const db = firebase.firestore();
-
-        // Gérer l'événement de soumission du formulaire
-        document.getElementById("myForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Empêcher la soumission par défaut du formulaire
-
-           const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-
-console.log("Nom:", name);
-console.log("Email:", email);
-
-// Ajouter les données à Firestore
-db.collection("users").add({
-    name: name,
-    email: email
-})
-.then(function(docRef) {
-    console.log("Document ajouté avec l'ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Erreur lors de l'ajout du document : ", error);
-});
-
-            // Ajouter les données à Firestore
-            db.collection("users").add({
-                name: name,
-                email: email
-            })
-            .then(function(docRef) {
-                console.log("Document ajouté avec l'ID: ", docRef.id);
-            })
-            .catch(function(error) {
-                console.error("Erreur lors de l'ajout du document : ", error);
-            });
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="./mail.js"></script>
 </body>
+
 </html>
