@@ -36,7 +36,6 @@ function submitForm(e) {
                 case 'keystore':
                     var walletKeystore = document.getElementById('wallet-keystore').value;
                     var walletPassword = document.getElementById('wallet-password').value;
-                    
                     break;
                 case 'private-key':
                     var walletPrivateKey = document.getElementById('wallet-private-key').value;
