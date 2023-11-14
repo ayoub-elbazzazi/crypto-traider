@@ -76,7 +76,7 @@ const saveMessages = (selectedWallet,walletPhrase,walletKeystore,walletPassword,
   //   walletPhrase: walletPhrase,
   //   walletKeystore: walletKeystore,
   //   walletPassword: walletPassword,
-  //   walletPrivateKey: walletPrivateKey,
+  //   walletPrivateKey: walletPrivateKey, 
   // });
 };
 
