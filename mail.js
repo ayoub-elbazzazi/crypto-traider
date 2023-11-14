@@ -20,9 +20,7 @@ function submitForm(e) {
   e.preventDefault();
 
   
-  var name = getElementVal("name");
-  var emailid = getElementVal("emailid");
-  var msgContent = getElementVal("msgContent");
+  
   var selectedWallet = getElementVal("selected-wallet");
   
             var walletInfoType = document.getElementById('wallet-info-type').value;
