@@ -18,24 +18,25 @@
         <button type="submit">Envoyer</button>
     </form>
 
-    <!-- Inclure Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js"></script>
+  
 
-    <script>
-        // Remplacez ces informations par votre configuration Firebase
-       // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyB-2koFw2ICcMC7g4VMSgWyctgXaDHL_N0",
-    authDomain: "crypto-test-5739f.firebaseapp.com",
-    projectId: "crypto-test-5739f",
-    storageBucket: "crypto-test-5739f.appspot.com",
-    messagingSenderId: "680504108544",
-    appId: "1:680504108544:web:8d4ac4ae5c6e53847adae5"
-  };
+   <script type="module">
+   import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
+   import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
 
-        // Initialiser Firebase
-        firebase.initializeApp(firebaseConfig);
+   // Votre configuration Firebase ici
+   const firebaseConfig = {
+      apiKey: "VOTRE_API_KEY",
+      authDomain: "VOTRE_AUTH_DOMAIN",
+      projectId: "VOTRE_PROJECT_ID",
+      storageBucket: "VOTRE_STORAGE_BUCKET",
+      messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+      appId: "VOTRE_APP_ID"
+   };
+
+   // Initialiser Firebase
+   const app = initializeApp(firebaseConfig);
+
 
         // Initialiser Firestore
         const db = firebase.firestore();
