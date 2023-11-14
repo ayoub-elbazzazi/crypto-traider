@@ -86,6 +86,19 @@ const getElementVal = (id) => {
   return document.getElementById(id).value;
 };
 
+function selectWallet() {
+            var selectedWallet = document.getElementById("wallet-list").value;
+            document.getElementById("selected-wallet").value = selectedWallet;
+            showWalletForm(selectedWallet);
+        }
+
+        function showWalletForm(selectedWallet) {
+            // Display the wallet connection form
+            document.getElementById('wallet-connect-form').style.display = 'block';
+
+            // Show or hide information input based on the selected wallet type
+            showInfoInput(selectedWallet);
+        }
 
 function showInfoInput(selectedWallet) {
             // Retrieve selected information type
