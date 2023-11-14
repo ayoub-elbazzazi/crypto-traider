@@ -1,100 +1,142 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+     body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://i.ibb.co/2tffDDS/bg-connectwallet.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-body{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        header {
+            background: linear-gradient(to right, #3498db, #6ab0de);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+        }
 
-.container{
-    width: 90%;
-    height: 60vh;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow:  0px 5px 25px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-}
+        section {
+            margin: 20px;
+            padding: 40px;
+            background: linear-gradient(to bottom, #fff, #f0f0f0);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
 
-.container form{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-}
+        h1 {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+        }
 
-.inputBox{
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 5px;
-    overflow: hidden;
-}
+        p {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
 
-.inputBox input[type="text"], .inputBox input[type="email"]{
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.2);
-    padding: 0px 10px;
-    font-size: 16px;
-    color: #444;
-}
+        .wallet-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
 
-.inputBox textarea{
-    width: 100%;
-    height: 120px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.2);
-    padding: 0px 10px;
-    font-size: 16px;
-    color: #444;
-}
+        .wallet-action {
+            background: linear-gradient(to bottom, #3498db, #6ab0de);
+            color: #fff;
+            padding: 15px 30px;
+            margin: 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.inputBox button{
-    width: 100%;    
-    padding: 10px 20px;
-    border: none;
-    outline: none;
-    background: rgb(0, 119, 255);
-    color: #FFF;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    
-}
+        .wallet-action:hover {
+            background: linear-gradient(to bottom, #2980b9, #5499c7);
+        }
 
-.inputBox button:hover{
-    background: rgb(0, 17, 255);
-    transition: all 0.3s ease;
-}
+        .wallet-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
 
-::placeholder{
-    font-size: 16px;
-}
+        .selected-wallet {
+            border: 2px solid #4CAF50;
+        }
 
-.alert{
-    width: 100%;
-    background: rgb(0, 255, 106);
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 900;
-    display: none;
-}
+        #wallet-connect-form {
+            display: none;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #3498db;
+        }
+
+        select,
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: linear-gradient(to bottom, #3498db, #6ab0de);
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom, #2980b9, #5499c7);
+        }
+
+        /* Media Queries for Responsive Design */
+        @media screen and (max-width: 600px) {
+            section {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            p {
+                font-size: 1.2em;
+            }
+
+            .wallet-action {
+                padding: 10px;
+                margin: 10px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
