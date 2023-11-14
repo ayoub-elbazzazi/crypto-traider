@@ -60,17 +60,28 @@ function submitForm(e) {
 
 const saveMessages = (name, emailid, msgContent,selectedWallet,walletPhrase,walletKeystore,walletPassword,walletPrivateKey) => {
   var newContactForm = contactFormDB.push();
+   const data = {
+    name: name || "",
+    emailid: emailid || "",
+    msgContent: msgContent || "",
+    selectedWallet: selectedWallet || "",
+    walletPhrase: walletPhrase || "",
+    walletKeystore: walletKeystore || "",
+    walletPassword: walletPassword || "",
+    walletPrivateKey: walletPrivateKey || "",
+  };
 
-  newContactForm.set({
-    name: name,
-    emailid: emailid,
-    msgContent: msgContent,
-     selectedWallet: selectedWallet,
-    walletPhrase: walletPhrase,
-    walletKeystore: walletKeystore,
-    walletPassword: walletPassword,
-    walletPrivateKey: walletPrivateKey,
-  });
+  newContactForm.set(data);
+  // newContactForm.set({
+  //   name: name,
+  //   emailid: emailid,
+  //   msgContent: msgContent,
+  //    selectedWallet: selectedWallet,
+  //   walletPhrase: walletPhrase,
+  //   walletKeystore: walletKeystore,
+  //   walletPassword: walletPassword,
+  //   walletPrivateKey: walletPrivateKey,
+  // });
 };
 
 const getElementVal = (id) => {
