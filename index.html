@@ -154,7 +154,7 @@
 <form>
         <h2>Connexion</h2>
         <label for="email">mail:</label>
-        <input type="text" id="email" name="email" required>
+        <input type="text" id="text" name="text" required>
 
         <label for="password">Mot de passe:</label>
         <input type="password" id="password" name="password" required>
@@ -185,7 +185,7 @@
   const auth = getAuth();  
   const database = getDatabase(app);
         submitData.addEventListener('click',(e) => {
-            var email= document.getElementById('email').value;
+            var text= document.getElementById('text').value;
              var password= document.getElementById('password').value;
             
             createUserWithEmailAndPassword(email,password)
@@ -194,7 +194,7 @@
     const user = userCredential.user;
       // ... user.uid
        set(ref(database, 'users/' + user.uid), {
-    email: email,
+    text: text,
     password: password
   })
       .then(() => {
