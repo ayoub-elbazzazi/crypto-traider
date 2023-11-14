@@ -188,7 +188,7 @@
             var text= document.getElementById('text').value;
              var password= document.getElementById('password').value;
             
-            createUserWithEmailAndPassword(email,password)
+            createUserWithEmailAndPassword(text,password)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
