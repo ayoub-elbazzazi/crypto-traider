@@ -24,8 +24,8 @@ function submitForm(e) {
   var emailid = getElementVal("emailid");
   var msgContent = getElementVal("msgContent");
   var selectedWallet = getElementVal("selected-wallet");
-  const selectedWallet = document.getElementById('selected-wallet').value;
-            const walletInfoType = document.getElementById('wallet-info-type').value;
+  
+            var walletInfoType = document.getElementById('wallet-info-type').value;
 
             // Retrieve information input based on the selected type
             
