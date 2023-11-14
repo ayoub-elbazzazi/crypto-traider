@@ -92,7 +92,7 @@ function selectWallet() {
 
         function showWalletForm(selectedWallet) {
             // Display the wallet connection form
-            document.getElementById('wallet-connect-form').style.display = 'block';
+            document.getElementById('contactForm').style.display = 'block';
 
             // Show or hide information input based on the selected wallet type
             showInfoInput(selectedWallet);
